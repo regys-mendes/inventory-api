@@ -44,7 +44,7 @@ public class ProductService {
         return new ProductResponseDTO(product.getId(), product.getName(), product.getQuantity(), product.getPrice());
     }
 
-    public ProductResponseDTO insertDTO(ProductInsertDTO dto) {
+    public ProductResponseDTO insert(ProductInsertDTO dto) {
         Product product = new Product(null, dto.getName(), dto.getQuantity(), dto.getPrice());
         repository.save(product);
         ProductResponseDTO responseDTO = new ProductResponseDTO(product.getId(), product.getName(), product.getQuantity(), product.getPrice());
