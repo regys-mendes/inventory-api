@@ -8,11 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.math.BigDecimal;
 import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "/products")
+@RequestMapping(value = "/products")
 public class ProductResource {
 
     private final ProductService service;
@@ -53,6 +54,16 @@ public class ProductResource {
         return ResponseEntity.ok().body(responseDTO);
     }
 
+    @GetMapping(value = "/stock")
+    public ResponseEntity<BigDecimal> getStockTotalValue(){
+        BigDecimal totalValue = service.getStockTotalValue();
+        return ResponseEntity.ok().body(totalValue);
+    }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

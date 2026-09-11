@@ -53,8 +53,8 @@ public class ProductService {
 
     public ProductResponseDTO update(Long id, ProductUpdateDTO updateDTO) {
         Product product = findByIdentity(id);
-        repository.save(product);
         updateHandler(product, updateDTO);
+        repository.save(product);
         return new ProductResponseDTO(product.getId(), product.getName(), product.getQuantity(), product.getPrice());
     }
 
