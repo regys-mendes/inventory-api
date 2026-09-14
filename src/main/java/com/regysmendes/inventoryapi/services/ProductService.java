@@ -4,6 +4,7 @@ import com.regysmendes.inventoryapi.dto.ProductInsertDTO;
 import com.regysmendes.inventoryapi.dto.ProductResponseDTO;
 import com.regysmendes.inventoryapi.dto.ProductUpdateDTO;
 import com.regysmendes.inventoryapi.entities.Product;
+import com.regysmendes.inventoryapi.exceptions.ObjectNotFoundException;
 import com.regysmendes.inventoryapi.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +37,7 @@ public class ProductService {
 
     public Product findByIdentity(Long id) {
         Optional<Product> product = repository.findById(id);
-        return product.orElseThrow(() -> new IllegalArgumentException("Id not found " + id));
+        return product.orElseThrow(() -> new ObjectNotFoundException("Id not found " + id));
     }
 
     public ProductResponseDTO findById(Long id) {
